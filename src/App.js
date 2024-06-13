@@ -1,23 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+import Menu from './componentes/Menu/Menu';
+import Formulario from './componentes/Formulario/Formulario.js';
+import Footer from './componentes/Footer/Footer.js';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Menu/>
+      <Formulario/>
+      <h5 className='organizacion'>Mi organización</h5>
+      <Footer titulo = "Proyecto realizado con React.js desarrollado por Carla Laya"/>
     </div>
   );
 }
