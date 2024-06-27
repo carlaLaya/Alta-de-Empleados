@@ -1,32 +1,17 @@
-.prata-regular {
-    font-family: "Prata", serif;
-    font-weight: 500;
-    font-style: normal;
-  }
-  
-  .bg-custom {
-    background-color: #f7f7f7;
-    box-shadow: 7px 7px 15px rgba(11, 11, 11, 0.25);
 
-  }
-  .border-custom {
-    border-color: #e0e0e0; 
+.titulo {
+  font-size: 30px;
+  font-weight: 400;
+  color: #6278f7;
+}
 
-  }
-  .form-label{
-    font-weight: 600;
-    font-family: "Montserrat", sans-serif;
+.form-label {
+  font-weight: bold;
+}
 
-  }
-  .form-control{
-    font-family: "Montserrat", sans-serif;
-    font-weight: 300;
-
-  }
-  .card-title{
-    color: #6278f7;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 400;
- 
-  }
+.form-control {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}

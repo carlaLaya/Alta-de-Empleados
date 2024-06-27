@@ -1,16 +1,8 @@
-import "./ListaOpciones.css"
+import "./ListaOpciones.css";
 
-const ListaOpciones =() => {
-    return <div className="mb-4">
-    <label for="equipo" className="form-label">Equipos</label>
-    <select className="form-select form-control" id="equipo" name="equipo">
+const ListaOpciones =(props) => {
 
-     {equipo.map((equipo, index) => <option key={index}>{equipo}</option>)}
-     
-    </select>
-  </div>
-}
-const equipo = [
+  const equipo = [
     "Programacion",
     "Front-End",
     "Data Science",
@@ -20,12 +12,21 @@ const equipo = [
     "Innovación y Gestión"
 ]
 
+const manejarCambio =(e) =>{
+  props.actualizarValor(e.target.value)
+
+  //console.log("cambio", e.target.value)
+
+}
+    return <div className="mb-4">
+    <label for="equipo" className="form-label">Equipos</label>
+    <select className="form-select form-control"  value={props.valor}  onChange={manejarCambio}>
+<option value="" disabled defaultValue="" hidden >Seleccionar Equipo</option> 
+     {equipo.map((equipo, index) => <option key={index} value={equipo}>{equipo}</option>)}
+     
+    </select>
+  </div>
+}
+
 export default ListaOpciones
 
-/*  <option value="programacion">Programacion</option>
-      <option value="front-end">Front-End</option>
-      <option value="data">Data Science</option>
-      <option value="Devops">Devops</option>
-      <option value="ux y Diseño">UX y Diseño</option>
-      <option value="movil">Móvil</option>
-      <option value="innovacion y gestion">Innovación y Gestión</option>*/
