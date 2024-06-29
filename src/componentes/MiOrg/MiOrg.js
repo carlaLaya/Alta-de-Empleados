@@ -1,6 +1,7 @@
 //import { useState } from "react";
 import "./MiOrg.css";
 
+
 const MiOrg = (props) => {
   return (
     <div className="container d-flex flex-column align-items-center">

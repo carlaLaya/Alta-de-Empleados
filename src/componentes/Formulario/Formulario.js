@@ -15,7 +15,7 @@ const Formulario = (props) => {
 
     const manejarEnvio = (e) => {
         e.preventDefault()
-        console.log("Manejar el envio")
+        //console.log("Manejar el envio")
         let datosAEnviar = {
             nombre,
             puesto,
@@ -25,11 +25,27 @@ const Formulario = (props) => {
         console.log(datosAEnviar)
     }
 
+    const manejarBorrado = () => {
+      actualizarNombre('');
+      actualizarPuesto('');
+      actualizarFoto('');
+      actualizarEquipo('');
+  };
+
+  const Boton = ({ texto, className, onClick, type = 'button' }) => {
+    return (
+        <button type={type} className={`btn ${className}`} onClick={onClick}>
+            {texto}
+        </button>
+    );
+};
+
+
     return <div className="container d-flex justify-content-center">
     <div className="form p-5 mt-5 bg-custom " >
         <form onSubmit={manejarEnvio}>
             <div className="mb-4 text-center">
-                <h5 className="titulo">Rellena el formulario para crear el colaborador</h5>
+                <h6 className="titulo">Rellena el formulario para crear el colaborador</h6>
             </div>
             <div className="mb-4">
             <CampoTexto
@@ -67,8 +83,8 @@ const Formulario = (props) => {
                 />
             </div>
             <div className="d-flex justify-content-end gap-2">
-                <Boton texto="Crear" className="btn btn-primary"/>
-                <Boton texto="Borrar" className="btn btn-secondary"/>
+                <Boton texto="Crear" className="btn btn-primary" type="submit"/>
+                <Boton texto="Borrar campos" className="btn btn-secondary" onClick={manejarBorrado}/>
             </div>
         </form>
     </div>
