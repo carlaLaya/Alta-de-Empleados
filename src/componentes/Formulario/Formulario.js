@@ -2,7 +2,8 @@ import { useState } from "react"
 import "./Formulario.css"
 import CampoTexto from "../CampoTexto/CampoTexto"
 import ListaOpciones from "../ListaOpciones/ListaOpciones"
-import Boton from "../Boton/Boton"
+//import Boton from "../Boton/Boton" 
+
 
 const Formulario = (props) => {
 
@@ -11,7 +12,7 @@ const Formulario = (props) => {
     const [foto, actualizarFoto] = useState("")
     const [equipo, actualizarEquipo] = useState("")
 
-    //const { registrarColaborador } = props
+   const { registrarColaborador } = props
 
     const manejarEnvio = (e) => {
         e.preventDefault()
@@ -22,7 +23,8 @@ const Formulario = (props) => {
             foto,
             equipo
         }
-        console.log(datosAEnviar)
+
+        registrarColaborador(datosAEnviar)
     }
 
     const manejarBorrado = () => {

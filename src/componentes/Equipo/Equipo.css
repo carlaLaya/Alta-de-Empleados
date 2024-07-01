@@ -4,19 +4,19 @@
     box-sizing: border-box;
     text-align: center;
     font-size: 32px;
-
 }
 
-.equipo h5{
+.equipo h3{
     font-weight: 400;
     color: #212121;
-    border-bottom: 4px solid ;
+    border-bottom: 4px solid;
     display: inline-block;
     padding-bottom: 8px;
 }
-.colaboradores {
+
+.colaboradores{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-
 }
+

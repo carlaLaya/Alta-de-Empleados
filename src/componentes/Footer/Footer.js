@@ -1,9 +1,9 @@
 import "./Footer.css";
 
-const Footer = (props) => {
+const Footer = () => {
   return (
     <section>
-      <h6 className="footer">{props.titulo}</h6>
+      <h6 className="footer"> Proyecto desarrollado por Carla Laya</h6>
     </section>
   );
 };
