@@ -4,9 +4,16 @@
     box-sizing: border-box;
     text-align: center;
     font-size: 32px;
+    position: relative;
 }
 
-.equipo h3{
+.input-color{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+}
+
+.equipo h4{
     font-weight: 400;
     color: #212121;
     border-bottom: 4px solid;
@@ -19,4 +26,3 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
-
