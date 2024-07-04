@@ -1,5 +1,5 @@
 import { useState } from "react"; //va primero
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 
 import "./App.css";
 import Menu from "./componentes/Menu/Menu";
@@ -16,15 +16,17 @@ function App() {
       id: uuid(),
       equipo: "Programación",
       foto: "https://github.com/carlaLaya.png",
-      nombre: "Christian Velasco",
+      nombre: "Carla Laya",
       puesto: "Head de Alura e Instructor",
+      fav: true,
     },
     {
       id: uuid(),
       equipo: "Programación",
       foto: "https://github.com/carlaLaya.png",
       nombre: "Genesys Rondón",
-      puesto: "Desarrolladora de software e instructora",
+      puesto: "Desarrolladora de software ",
+      fav: false,
     },
     {
       id: uuid(),
@@ -32,6 +34,7 @@ function App() {
       foto: "https://github.com/HarlandLohora.png",
       nombre: "Harland Lohora",
       puesto: "Instructor",
+      fav: false,
     },
 
     {
@@ -40,6 +43,7 @@ function App() {
       foto: "https://github.com/JeanmarieAluraLatam.png",
       nombre: "Jeanmarie Quijada",
       puesto: "Instructora en Alura Latam",
+      fav: false,
     },
 
     {
@@ -48,10 +52,11 @@ function App() {
       foto: "https://github.com/JoseDarioGonzalezCha.png",
       nombre: "Jose Gonzalez",
       puesto: "Dev FullStack",
+      fav: false,
     },
   ]);
 
-    //console.log(uuid())
+  //console.log(uuid())
 
   const [equipo, actualizarEquipo] = useState([
     {
@@ -106,7 +111,6 @@ function App() {
   //resgistrar equipo
 
   const registrarColaborador = (colaborador) => {
-    //spread operator
     actualizarColaboradores([...colaboradores, colaborador]);
   };
 
@@ -114,28 +118,43 @@ function App() {
   const eliminarColaborador = (id) => {
     console.log("Eliminar colaborador", id);
     const nuevosColaboradores = colaboradores.filter((colaborador) => {
-     return colaborador.id !== id
-    })
+      return colaborador.id !== id;
+    });
 
-    actualizarColaboradores(nuevosColaboradores)
+    actualizarColaboradores(nuevosColaboradores);
   };
 
   //actualizar color de equipo
   const actualizarColor = (color, id) => {
     //console.log("Actualizar: ", color, id)
-    const equiposActualizados = equipo.map((equipo) =>{
+    const equiposActualizados = equipo.map((equipo) => {
       if (equipo.id === id) {
-        equipo.colorPrimario = color
+        equipo.colorPrimario = color;
       }
 
-      return equipo
-    })
+      return equipo;
+    });
 
-    actualizarEquipo(equiposActualizados)
-  }
+    actualizarEquipo(equiposActualizados);
+  };
 
   //lista de equipos
   //const equipo =
+  const crearEquipo = (nuevoEquipo) => {
+    console.log(nuevoEquipo);
+    actualizarEquipo([...equipo, { ...nuevoEquipo, id: uuid() }]);
+  };
+
+  const like = (id) => {
+    console.log("like", id);
+    const colaboradoresActualizados = colaboradores.map((colaborador) => {
+      if (colaborador.id === id) {
+        colaborador.fav = !colaborador.fav;
+      }
+      return colaborador;
+    });
+    actualizarColaboradores(colaboradoresActualizados);
+  };
 
   return (
     <div>
@@ -145,6 +164,7 @@ function App() {
           equipo={equipo.map((equipo) => equipo.titulo)}
           registrarColaborador={registrarColaborador}
           actualizarColor={actualizarColor}
+          crearEquipo={crearEquipo}
         />
       )}
 
@@ -153,13 +173,13 @@ function App() {
       {equipo.map((equipo) => (
         <Equipo
           datos={equipo}
+          like={like}
           key={equipo.titulo}
           colaboradores={colaboradores.filter(
             (colaborador) => colaborador.equipo === equipo.titulo
           )}
           eliminarColaborador={eliminarColaborador}
           actualizarColor={actualizarColor}
-
         />
       ))}
 

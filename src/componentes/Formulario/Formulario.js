@@ -12,7 +12,10 @@ const Formulario = (props) => {
     const [foto, actualizarFoto] = useState("")
     const [equipo, actualizarEquipo] = useState("")
 
-   const { registrarColaborador } = props
+    const [titulo, actualizarTitulo] = useState("")
+    const [color, actualizarColor] = useState("")
+
+   const { registrarColaborador, crearEquipo } = props
 
     const manejarEnvio = (e) => {
         e.preventDefault()
@@ -27,11 +30,22 @@ const Formulario = (props) => {
         registrarColaborador(datosAEnviar)
     }
 
+const manejarNuevoEquipo = (e) => {
+    e.preventDefault()
+    crearEquipo({ titulo, colorSecundario: color })
+}
+
+
+
     const manejarBorrado = () => {
       actualizarNombre('');
       actualizarPuesto('');
       actualizarFoto('');
       actualizarEquipo('');
+      actualizarTitulo('');
+      actualizarColor('');
+
+
   };
 
   const Boton = ({ texto, className, onClick, type = 'button' }) => {
@@ -43,7 +57,7 @@ const Formulario = (props) => {
 };
 
 
-    return <div className="container d-flex justify-content-center">
+    return <div className="container d-flex justify-content-evenly gap-5 align-items-start flex-wrap">
     <div className="form p-5 mt-5 bg-custom " >
         <form onSubmit={manejarEnvio}>
             <div className="mb-4 text-center">
@@ -86,11 +100,45 @@ const Formulario = (props) => {
             </div>
             <div className="d-flex justify-content-end gap-2">
                 <Boton texto="Crear" className="btn btn-primary" type="submit"/>
-                <Boton texto="Borrar campos" className="btn btn-secondary" onClick={manejarBorrado}/>
+                <Boton texto="Borrar" className="btn btn-secondary" onClick={manejarBorrado}/>
+            </div>
+        </form>
+    </div>
+    <div className="form p-5 mt-5 bg-custom " >
+        <form onSubmit={manejarNuevoEquipo}>
+            <div className="mb-4 text-center">
+                <h6 className="titulo">Rellena el formulario para crear un equipo</h6>
+            </div>
+            <div className="mb-4">
+            <CampoTexto
+                titulo="Titulo"
+                placeholder="Ingresar titulo"
+                required
+                valor={titulo}
+                actualizarValor={actualizarTitulo}
+            />
+           </div>
+            <div className="mb-4">
+            <CampoTexto
+                titulo="Color"
+                placeholder="Ingresar el color"
+                required
+                valor={color}
+                actualizarValor={actualizarColor}
+                type="color"
+            /> 
+            </div>
+         
+            <div className="d-flex justify-content-end gap-2">
+                <Boton texto="Registrar equipo" className="btn btn-primary" type="submit"/>
+                <Boton texto="Borrar" className="btn btn-secondary" onClick={manejarBorrado}/>
+
             </div>
         </form>
     </div>
 </div>
+
+
 
 
 }
