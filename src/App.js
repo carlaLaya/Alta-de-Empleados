@@ -116,6 +116,7 @@ function App() {
     actualizarEquipo(equiposActualizados);
   };
 
+  
   const crearEquipo = (nuevoEquipo) => {
     actualizarEquipo([...equipo, { ...nuevoEquipo, id: uuid() }]);
   };
