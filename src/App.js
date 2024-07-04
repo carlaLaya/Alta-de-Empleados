@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"; //va primero
 import { v4 as uuid } from "uuid";
 
 import "./App.css";
@@ -9,119 +9,150 @@ import MiOrg from "./componentes/MiOrg/MiOrg.js";
 import Equipo from "./componentes/Equipo/Equipo.js";
 
 function App() {
+  //const [nombreVariable, funcionActualiza] = useState(valorinicial)
   const [mostrarFormulario, actualizarMostrar] = useState(false);
-  const [colaboradores, actualizarColaboradores] = useState([]);
+  const [colaboradores, actualizarColaboradores] = useState([
+    {
+      id: uuid(),
+      equipo: "Programación",
+      foto: "https://github.com/carlaLaya.png",
+      nombre: "Carla Laya",
+      puesto: "Dev FullStack",
+      fav: true,
+    },
+    {
+      id: uuid(),
+      equipo: "Front-End",
+      foto: "https://github.com/HarlandLohora.png",
+      nombre: "Harland Lohora",
+      puesto: "Instructor",
+      fav: false,
+    },
 
-  // Recuperar los colaboradores desde localStorage al montar el componente
-  useEffect(() => {
-    const cargarColaboradores = async () => {
-      const colaboradoresGuardados = localStorage.getItem("colaboradores");
-      if (colaboradoresGuardados) {
-        console.log("Cargando colaboradores desde localStorage:", JSON.parse(colaboradoresGuardados));
-        actualizarColaboradores(JSON.parse(colaboradoresGuardados));
-      }
-    };
+    {
+      id: uuid(),
+      equipo: "UX y Diseño",
+      foto: "https://github.com/JeanmarieAluraLatam.png",
+      nombre: "Jeanmarie Quijada",
+      puesto: "Instructora ",
+      fav: false,
+    },
 
-    cargarColaboradores();
-  }, []);
+    {
+      id: uuid(),
+      equipo: "Innovación y Gestión",
+      foto: "https://github.com/JoseDarioGonzalezCha.png",
+      nombre: "Jose Gonzalez",
+      puesto: "Instructora",
+      fav: false,
+    },
+  ]);
 
-  // Guardar los colaboradores en localStorage cada vez que cambien
-  useEffect(() => {
-    console.log("Guardando colaboradores en localStorage:", colaboradores);
-    localStorage.setItem("colaboradores", JSON.stringify(colaboradores));
-  }, [colaboradores]);
+// agrego funcionalidad para conservar cambios
 
-  // Estado inicial del equipo, cargado desde localStorage o datos por defecto
-  const [equipo, actualizarEquipo] = useState(() => {
-    const equipoGuardado = localStorage.getItem("equipo");
-    if (equipoGuardado) {
-      return JSON.parse(equipoGuardado);
-    } else {
-      return [
-        {
-          id: uuid(),
-          titulo: "Programación",
-          colorPrimario: "#57C278",
-          colorSecundario: "#D9F7E9",
-        },
-        {
-          id: uuid(),
-          titulo: "Front-End",
-          colorPrimario: "#82CFFA",
-          colorSecundario: "#E8F8FF",
-        },
-        {
-          id: uuid(),
-          titulo: "Data Science",
-          colorPrimario: "#A6D157",
-          colorSecundario: "#FOF8E2",
-        },
-        {
-          id: uuid(),
-          titulo: "Devops",
-          colorPrimario: "#E06B69",
-          colorSecundario: "#FDE7E8",
-        },
-        {
-          id: uuid(),
-          titulo: "UX y Diseño",
-          colorPrimario: "#DB6EBF",
-          colorSecundario: "#FAE9F5",
-        },
-        {
-          id: uuid(),
-          titulo: "Móvil",
-          colorPrimario: "#FFBA05",
-          colorSecundario: "#FFF5D9",
-        },
-        {
-          id: uuid(),
-          titulo: "Innovación y Gestión",
-          colorPrimario: "#FF8A29",
-          colorSecundario: "#FFEEDF",
-        },
-      ];
-    }
-  });
+useEffect(() => {
+  // Recuperar los datos del localStorage
+  const colaboradoresGuardados = localStorage.getItem('colaboradores');
+  if (colaboradoresGuardados) {
+    actualizarColaboradores(JSON.parse(colaboradoresGuardados));
+  }
+}, []);
 
-  // Guardar el equipo en localStorage cada vez que cambie
-  useEffect(() => {
-    console.log("Guardando equipo en localStorage:", equipo);
-    localStorage.setItem("equipo", JSON.stringify(equipo));
-  }, [equipo]);
+useEffect(() => {
+  // Guardar los datos en el localStorage
+  localStorage.setItem('colaboradores', JSON.stringify(colaboradores));
+}, [colaboradores]);
+
+// fin de la prueba 
+
+  const [equipo, actualizarEquipo] = useState([
+    {
+      id: uuid(),
+      titulo: "Programación",
+      colorPrimario: "#57C278",
+      colorSecundario: "#D9F7E9",
+    },
+    {
+      id: uuid(),
+      titulo: "Front-End",
+      colorPrimario: "#82CFFA",
+      colorSecundario: "#E8F8FF",
+    },
+    {
+      id: uuid(),
+      titulo: "Data Science",
+      colorPrimario: "#A6D157",
+      colorSecundario: "#FOF8E2",
+    },
+    {
+      id: uuid(),
+      titulo: "Devops",
+      colorPrimario: "#E06B69",
+      colorSecundario: "#FDE7E8",
+    },
+    {
+      id: uuid(),
+      titulo: "UX y Diseño",
+      colorPrimario: "#DB6EBF",
+      colorSecundario: "#FAE9F5",
+    },
+    {
+      id: uuid(),
+      titulo: "Móvil",
+      colorPrimario: "#FFBA05",
+      colorSecundario: "#FFF5D9",
+    },
+    {
+      id: uuid(),
+      titulo: "Innovación y Gestión",
+      colorPrimario: "#FF8A29",
+      colorSecundario: "#FFEEDF",
+    },
+  ]);
 
   const cambiarMostrar = () => {
     actualizarMostrar(!mostrarFormulario);
   };
 
+  //resgistrar equipo
+
   const registrarColaborador = (colaborador) => {
-    const nuevoColaborador = { ...colaborador, id: uuid() };
-    console.log("Registrando nuevo colaborador:", nuevoColaborador);
-    actualizarColaboradores([...colaboradores, nuevoColaborador]);
+    actualizarColaboradores([...colaboradores, colaborador]);
   };
 
+  //Eliminar colaborador
   const eliminarColaborador = (id) => {
-    const nuevosColaboradores = colaboradores.filter((colaborador) => colaborador.id !== id);
-    console.log("Eliminando colaborador con id:", id);
+    console.log("Eliminar colaborador", id);
+    const nuevosColaboradores = colaboradores.filter((colaborador) => {
+      return colaborador.id !== id;
+    });
+
     actualizarColaboradores(nuevosColaboradores);
   };
 
+  //actualizar color de equipo
   const actualizarColor = (color, id) => {
+    //console.log("Actualizar: ", color, id)
     const equiposActualizados = equipo.map((equipo) => {
       if (equipo.id === id) {
         equipo.colorPrimario = color;
       }
+
       return equipo;
     });
+
     actualizarEquipo(equiposActualizados);
   };
 
-  
+  //lista de equipos
+  //const equipo =
   const crearEquipo = (nuevoEquipo) => {
+    console.log(nuevoEquipo);
     actualizarEquipo([...equipo, { ...nuevoEquipo, id: uuid() }]);
   };
 
   const like = (id) => {
+    console.log("like", id);
     const colaboradoresActualizados = colaboradores.map((colaborador) => {
       if (colaborador.id === id) {
         colaborador.fav = !colaborador.fav;
@@ -142,7 +173,9 @@ function App() {
           crearEquipo={crearEquipo}
         />
       )}
+
       <MiOrg cambiarMostrar={cambiarMostrar} />
+
       {equipo.map((equipo) => (
         <Equipo
           datos={equipo}
@@ -155,6 +188,7 @@ function App() {
           actualizarColor={actualizarColor}
         />
       ))}
+
       <Footer />
     </div>
   );
