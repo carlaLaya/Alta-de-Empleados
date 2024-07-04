@@ -33,6 +33,7 @@ const Equipo = (props) => {
                 colorPrimario={colorPrimario}
                 eliminarColaborador={eliminarColaborador}
                 like={like}
+
               />
             ))}
           </div>
