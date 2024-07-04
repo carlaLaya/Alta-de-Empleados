@@ -48,22 +48,22 @@ function App() {
     },
   ]);
 
-// agrego funcionalidad para conservar cambios
+  // agrego funcionalidad para conservar cambios
 
-useEffect(() => {
-  // Recuperar los datos del localStorage
-  const colaboradoresGuardados = localStorage.getItem('colaboradores');
-  if (colaboradoresGuardados) {
-    actualizarColaboradores(JSON.parse(colaboradoresGuardados));
-  }
-}, []);
+  useEffect(() => {
+    // Recuperar los datos del localStorage
+    const colaboradoresGuardados = localStorage.getItem("colaboradores");
+    if (colaboradoresGuardados) {
+      actualizarColaboradores(JSON.parse(colaboradoresGuardados));
+    }
+  }, []);
 
-useEffect(() => {
-  // Guardar los datos en el localStorage
-  localStorage.setItem('colaboradores', JSON.stringify(colaboradores));
-}, [colaboradores]);
+  useEffect(() => {
+    // Guardar los datos en el localStorage
+    localStorage.setItem("colaboradores", JSON.stringify(colaboradores));
+  }, [colaboradores]);
 
-// fin de la prueba 
+  // fin de la prueba
 
   const [equipo, actualizarEquipo] = useState([
     {
